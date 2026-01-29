@@ -1,31 +1,39 @@
 from turtle import Turtle
 
 MOVE_DISTANCE = 30
-PADDLES_POSITIONS = [(350, 0), (-350, 0)]
 x_pos = 350
 y_pos = 0
 
-class Paddle:
-    def __init__(self):
-        self.paddles = []
-        self.create_paddle()
+class Paddle(Turtle):
+    def __init__(self, pos):
+        super().__init__()
+        self.create_paddle(pos)
 
-    def create_paddle(self):
 
-        for position in PADDLES_POSITIONS:
-            new_paddle = Turtle()
-            new_paddle.speed("fastest")
-            new_paddle.penup()
-            new_paddle.shape("square")
-            new_paddle.shapesize(stretch_wid=5, stretch_len=1, outline=None)
-            new_paddle.color("white")
-            new_paddle.goto(position)
-            self.paddles.append(new_paddle)
+    def create_paddle(self, pos):
+            self.speed("fastest")
+            self.penup()
+            self.shape("square")
+            self.shapesize(stretch_wid=5, stretch_len=1, outline=None)
+            self.color("white")
+            self.goto(pos)
+            return self
 
     def up(self):
-        if self.paddles[1].ycor() < 250:
-            self.paddles[1].sety(self.paddles[1].ycor() + MOVE_DISTANCE)
+        new_y = self.ycor() + MOVE_DISTANCE
+        self.goto(self.xcor(), new_y)
+
 
     def down(self):
-        if self.paddles[1].ycor() > -250:
-            self.paddles[1].sety(self.paddles[1].ycor() - MOVE_DISTANCE)
+        new_y = self.ycor() - MOVE_DISTANCE
+        self.goto(self.xcor(), new_y)
+
+
+    def w_key(self):
+        new_y = self.ycor() + MOVE_DISTANCE
+        self.goto(self.xcor(), new_y)
+
+
+    def s_key(self):
+        new_y = self.ycor() - MOVE_DISTANCE
+        self.goto(self.xcor(), new_y)
