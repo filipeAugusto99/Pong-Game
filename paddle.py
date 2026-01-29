@@ -1,5 +1,6 @@
 from turtle import Turtle
 
+
 MOVE_DISTANCE = 30
 x_pos = 350
 y_pos = 0
@@ -11,7 +12,6 @@ class Paddle(Turtle):
 
 
     def create_paddle(self, pos):
-            self.speed("fastest")
             self.penup()
             self.shape("square")
             self.shapesize(stretch_wid=5, stretch_len=1, outline=None)
